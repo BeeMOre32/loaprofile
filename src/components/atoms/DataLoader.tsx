@@ -24,6 +24,7 @@ function DataLoader() {
       })
     })
     setIsModalOpen(false);
+    setFileList([]);
   };
 
   const handleCancel = () => {
@@ -37,6 +38,7 @@ function DataLoader() {
         message.error(`${file.name} is not a text file`);
       }
       setFileList(fileList.concat(file));
+      return false;
     },
   };
   
@@ -50,7 +52,7 @@ function DataLoader() {
       >
         <div style={{ display:"flex", flexDirection: "column", alignItems: "center"}}>
           <Upload {...props}>
-            <Button style={{margin: "10px auto"}} icon={<UploadOutlined />}>Upload txt only</Button>
+            <Button style={{margin: "10px auto"}} icon={<UploadOutlined />}>txt 파일 업로드</Button>
           </Upload>
           <Popconfirm
               title="업로드할까요?"

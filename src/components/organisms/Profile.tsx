@@ -1,4 +1,4 @@
-import { useSensors, useSensor, PointerSensor, KeyboardSensor, DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
+import { useSensors, useSensor, PointerSensor, KeyboardSensor, DndContext, closestCenter, DragEndEvent, MouseSensor } from '@dnd-kit/core';
 import {
     arrayMove,
     SortableContext,
@@ -23,7 +23,7 @@ const Profile: React.FC = () => {
     const [nickname, setNickname] = useState("");
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(MouseSensor),
         useSensor(KeyboardSensor, {
           coordinateGetter: sortableKeyboardCoordinates,
         })

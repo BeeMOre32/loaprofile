@@ -141,9 +141,9 @@ function getStatInfo(json: any, selector: cheerio.CheerioAPI): StatInfo {
         .map((a: any) => a.replace(tagRegex, ""))
         const addOptions = [] as string[];
         effectOptions.forEach((eff) => {
-            if(optionArr.filter((a: any) => a.includes(eff)).length > 0) addOptions.push(eff);
+            if(optionArr.filter((a: any) => a.includes(`[${eff}]`)).length > 0) addOptions.push(eff);
         })
-        brace.options = addOptions;
+        brace.options = Array.from(new Set(addOptions));
     }
 
     const stone = {} as StoneInfo;

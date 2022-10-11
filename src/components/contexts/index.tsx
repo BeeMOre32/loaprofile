@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 const LoaContext = createContext({
     names: [] as string[],
     addName: (name: string) => {},
-    removeName: (name: string) => {},
     profiles: [] as CharInfo[],
     setProfiles: (infos: CharInfo[]) => {},
     addProfile: (info: CharInfo) => {},
@@ -25,11 +24,6 @@ interface Props {
       window.localStorage.setItem("loa_inv", newNames.join(","))
       setNames(newNames);
     }
-    const removeName = (name: string) => {
-      const newNames = names.filter(a => !a.includes(name));
-      window.localStorage.setItem("loa_inv", newNames.join(","))
-      setNames(newNames);
-    }
 
     const [profiles, setProfiles] = useState([] as CharInfo[]);
     
@@ -48,7 +42,6 @@ interface Props {
           value={{
             names,
             addName,
-            removeName,
             profiles,
             setProfiles,
             addProfile,

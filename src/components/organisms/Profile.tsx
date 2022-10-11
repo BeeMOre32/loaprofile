@@ -13,6 +13,7 @@ import { Empty, Input } from 'antd';
 import { getCharacterInfo } from '../../func/ScrapingService';
 import Downloader from '../atoms/Downloader';
 import DataLoader from '../atoms/DataLoader';
+import { ColumnFlexDiv, MediumText, RowFlexDiv } from '../atoms/styles';
 
 const { Search } = Input;
 
@@ -60,23 +61,22 @@ const Profile: React.FC = () => {
             <SortableContext
                 items={profiles.map(a => a.id)}
             >
-                <h3>Tip : 노란색 부분을 드래그해서 순서를 바꿔 보세요.</h3>
-                <div style={{maxWidth: 400, margin: "20px auto"}}>
+                <MediumText>Tip : 회색 박스 부분을 누르고 드래그해 보세요.</MediumText>
+                <RowFlexDiv>
                     <Downloader tag='profile-wrapper'/>
                     <DataLoader/>
-                </div>
+                </RowFlexDiv>
                 <Search 
                     placeholder="닉네임을 입력하세요"
                     value={nickname} 
                     allowClear
-                    style={{maxWidth: 300, margin: "20px auto"}}
+                    style={{maxWidth: 250}}
                     onChange={(e) => setNickname(e.target.value)}
                     onSearch={searchNickName}
                 />
-                {
-                    profiles.length > 0 ? 
-                    <div style={{margin: "0 auto"}}>
-                        <div className='profile-wrapper' id="profile-wrapper">
+                <RowFlexDiv style={{minHeight: '200px'}}>
+                    { profiles.length > 0 ?
+                        <ColumnFlexDiv id="profile-wrapper" style={{ maxWidth: `${600*Math.min(2, profiles.length)}px`}}>
                             <PartyProfile {...profiles[0]}/>
                             <div style={{
                                 display: "grid",
@@ -88,9 +88,9 @@ const Profile: React.FC = () => {
                                     return <ProfileCard key={id} {...profile}/>
                                 })}
                             </div>
-                        </div>
-                    </div> : <Empty description={"프로필을 추가해 보세요."} style={{margin: "20px"}}/>
-                }
+                        </ColumnFlexDiv>
+                    : <Empty description={"프로필을 추가해 보세요."}/> }
+                </RowFlexDiv> 
             </SortableContext>
         </DndContext>
     );

@@ -31,7 +31,7 @@ const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
     }
 
     return (
-        <Button shape='round' style={{ height: 35, width: 110, fontSize: "1rem", fontWeight: 600, margin: 5}} type="primary" danger onClick={handleSaveClick}>Download</Button>
+        <Button shape='round' style={{ height: 35, width: 110, fontSize: "1rem", margin: 5}} type="primary" danger onClick={handleSaveClick}>Download</Button>
     )
 }
 

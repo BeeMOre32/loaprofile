@@ -19,8 +19,4 @@ code {
 .profile-wrapper {
   border: none;
   width: 95%;
-  min-width: 551px;
-  max-width: 1250px;
-  display: flex;
-  flex-direction: column;
 }

@@ -3,6 +3,7 @@ import { Button, message, Modal, notification, Popconfirm, Upload, UploadProps }
 import { RcFile } from 'antd/lib/upload';
 import React, { useContext, useState } from 'react'
 import { LoaContext } from '../contexts';
+import { ColumnFlexDiv } from './styles';
 
 function DataLoader() {
   const [fileList, setFileList] = useState([] as RcFile[]);
@@ -50,7 +51,7 @@ function DataLoader() {
           onCancel={handleCancel}
           title="Data Copy &#38; Load"           
       >
-        <div style={{ display:"flex", flexDirection: "column", alignItems: "center"}}>
+        <ColumnFlexDiv>
           <Upload {...props}>
             <Button style={{margin: "10px auto"}} icon={<UploadOutlined />}>txt 파일 업로드</Button>
           </Upload>
@@ -62,7 +63,7 @@ function DataLoader() {
           >
             <Button style={{margin: "30px auto"}} shape="round" size='large' type="primary">업로드</Button>
           </Popconfirm>
-        </div>
+        </ColumnFlexDiv>
       </Modal>
     </>
   );

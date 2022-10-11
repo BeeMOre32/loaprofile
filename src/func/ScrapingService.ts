@@ -1,6 +1,5 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio';
-import React from 'react';
 import { effectOptions, intRegex, tagRegex } from './constant';
 
 export const getCharacterInfo = async (name: string, id: number) => {

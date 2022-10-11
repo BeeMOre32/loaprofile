@@ -1,29 +1,25 @@
 import { Card, Tooltip } from 'antd'
 import React from 'react'
+import { BigText, MediumText, SmallText } from '../atoms/styles'
 
 const PartyProfile: React.FC<CharInfo> = (info) => {
 
   return (
     <Card.Grid hoverable={false} style={{
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "1fr",
       border: '1px solid lightgray',
-      width: "100%", margin: '3px'
+      width: "100%"
     }}>
         <div style={{
             width: "100%"
         }}>
-            <b style={{fontSize: "20px", lineHeight: "30px"}}>
-                #대표서버 #{info.mainInfo.server} #원정대Lv.{info.mainInfo.partyLv} 
-            </b>
-            <br/>
-            <b style={{fontSize: "13px", lineHeight: "30px"}}>
-                Made By LOA Profile
-            </b>
+            <BigText>#대표서버 #{info.mainInfo.server} #원정대Lv.{info.mainInfo.partyLv} </BigText>
+            <MediumText>Made By LOA Profile</MediumText>
         </div>
         <div style={{
             textAlign: "center",
-            marginTop: "15px",
+            marginTop: "10px",
             width: "100%"
         }}>
             <table width="100%" style={{fontSize: "16px"}}>

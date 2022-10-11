@@ -1,5 +1,6 @@
 import { Spin } from 'antd';
-import React, { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { BigText, ColumnFlexDiv } from './components/atoms/styles';
 import { LoaContext } from './components/contexts';
 import Profile from './components/organisms/Profile';
 import { getCharacterInfo } from './func/ScrapingService';
@@ -22,15 +23,10 @@ function App() {
   }, [])
 
   return (
-    <div style={{
-      margin: "20px auto",
-      display: "flex",
-      flexDirection: 'column',
-      textAlign: "center",
-    }}>
-      <h1>Lost Ark Profile</h1>
+    <ColumnFlexDiv>
+      <BigText style={{fontSize: '25px', marginTop: "5px"}}>Lost Ark Profile</BigText>
       {loading ? <Spin tip="Loading..." style={{marginTop: "30px"}}/> : <Profile/>}
-    </div>
+    </ColumnFlexDiv>
   );
 }
 

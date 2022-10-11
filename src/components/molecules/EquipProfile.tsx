@@ -21,7 +21,7 @@ const EquipProfile: React.FC<EquipProps> = ({equip}: EquipProps) => {
                     margin: "2px",
                     width: "100%"
                 }}>
-                    <img src={a.src} crossOrigin="anonymous" style={{marginRight: "5px", border: `1px solid gray`, backgroundColor: a.color, filter: 'grayscale(35%)'}}/>
+                    <img src={a.src} crossOrigin="anonymous" style={{marginRight: "5px", border: `2px solid ${a.color}`}}/>
                     <div>
                         <b style={{fontSize: "12px"}}>
                             {a.name}

@@ -21,11 +21,11 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
                     margin: "2px auto",
                     width: "100%"
                 }}>
-                    <img src={a.src} crossOrigin="anonymous" style={{ width: '40px', height: '40px', marginRight: "2px", border: `1px solid gray`, backgroundColor: a.color, filter: 'grayscale(45%)'}}/>
+                    <img src={a.src} crossOrigin="anonymous" style={{ width: '40px', height: '40px', marginRight: "2px", border: `2px solid ${a.color}`}}/>
                     <div style={{
                         backgroundColor: "black", color: "white", lineHeight: "15px",
                         textAlign: "center",
-                        width: '15px', height: "15px", position:"absolute", bottom: "7px", right: "7px"
+                        width: '15px', height: "15px", position:"absolute", bottom: "7px", right: "3px"
                     }}>
                         {a.level}
                     </div>

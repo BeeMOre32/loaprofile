@@ -15,7 +15,7 @@ const AccProfile: React.FC<StatInfo> = (info) => {
                     margin: "2px",
                     width: "100%"
                 }}>
-                    <img src={a.src} crossOrigin="anonymous" style={{width: '40px', height: '40px', marginRight: "5px",  border: `1px solid gray`, backgroundColor: a.color, filter: 'grayscale(35%)'}}/>
+                    <img src={a.src} crossOrigin="anonymous" style={{width: '40px', height: '40px', marginRight: "5px",  border: `2px solid ${a.color}`}}/>
                     <div>
                         <b style={{fontSize: "12px"}}>
                             {a.name.split(" ")[2]}
@@ -36,7 +36,7 @@ const AccProfile: React.FC<StatInfo> = (info) => {
             height: "45px",
             margin: "2px"
         }}>
-            <img src={info.brace.src} crossOrigin="anonymous" style={{ width: '40px', height: '40px', marginRight: "5px", border: `1px solid gray`, backgroundColor: info.brace.color, filter: 'grayscale(35%)'}}/>
+            <img src={info.brace.src} crossOrigin="anonymous" style={{ width: '40px', height: '40px', marginRight: "5px", border: `2px solid ${info.brace.color}`}}/>
             <div style={{fontSize: "13px", wordBreak: "keep-all", display: "flex", alignItems: 'center'}}>
                 <b>{info.brace.options.length > 0 ? info.brace.options.join(" ") : "특수옵션X"}</b>
             </div>

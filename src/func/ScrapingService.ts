@@ -215,8 +215,6 @@ function getJewelInfo(json: any): JewelInfo[] {
         info.push(element);
     })
 
-    console.log(info)
-
     info.sort((a,b) => b.level - a.level)
     return info;
 }

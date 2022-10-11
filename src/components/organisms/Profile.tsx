@@ -1,12 +1,11 @@
-import { useSensors, useSensor, PointerSensor, KeyboardSensor, DndContext, closestCenter, DragEndEvent, MouseSensor } from '@dnd-kit/core';
+import { useSensors, useSensor, KeyboardSensor, DndContext, closestCenter, DragEndEvent, MouseSensor } from '@dnd-kit/core';
 import {
     arrayMove,
     SortableContext,
     sortableKeyboardCoordinates,
-    verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ProfileCard from './ProfileCard';
 import { LoaContext } from '../contexts';
 import PartyProfile from '../molecules/PartyProfile';

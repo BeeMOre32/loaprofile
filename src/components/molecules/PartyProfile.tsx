@@ -7,7 +7,7 @@ const PartyProfile: React.FC<CharInfo> = (info) => {
     <Card.Grid hoverable={false} style={{
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      backgroundColor: 'lightgray',
+      border: '1px solid lightgray',
       width: "100%", margin: '3px'
     }}>
         <div style={{

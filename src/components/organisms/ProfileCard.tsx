@@ -33,7 +33,7 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
       <Card.Grid style={{width: "100%", height: '100%', margin: "3px", backgroundColor: 'white'}}>
         <Row gutter={[10,24]}>
           <Col span={24} {...attributes} {...listeners} style={{
-            backgroundColor: "lightyellow"
+            border: "1px solid lightgray"
           }}>
             <MainProfile {...info.mainInfo}/>
           </Col>

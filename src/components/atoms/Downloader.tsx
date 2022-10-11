@@ -19,8 +19,10 @@ const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
     const handleSaveClick = () => {
         const element = document.getElementById(tag)
         if (!element) return;
-        domtoimage.toPng(element, { quality: 1 })
-            .then(function (dataUrl) {
+        domtoimage.toPng(element, { 
+            quality: 1,
+            bgcolor: 'white'
+        }).then(function (dataUrl) {
                var link = document.createElement('a');
                link.download = `c${Date.now()}.png`;
                link.href = dataUrl;

@@ -4,7 +4,7 @@ import React from 'react';
 import { effectOptions, intRegex, tagRegex } from './constant';
 
 export const getCharacterInfo = async (name: string, id: number) => {
-    const html = await axios.get(`${process.env.REACT_APP_LOA_HOST}/html/char/${encodeURI(name)}`);
+    const html = await axios.get(`${process.env.REACT_APP_LOA_HOST}/v1/char/${encodeURI(name)}`);
 
     const selector: cheerio.CheerioAPI = cheerio.load(html.data);
 
@@ -16,7 +16,7 @@ export const getCharacterInfo = async (name: string, id: number) => {
     const varScripts: any = selector('script').filter((_, a:any) => a.children[0]?.data.indexOf("var _memberNo") > -1);
     const vars = varScripts[0].children[0].data.split("\n\t\t").slice(1,4);
 
-    const collectHtml = await axios.post(`${process.env.REACT_APP_LOA_HOST}/html/collection`, {
+    const collectHtml = await axios.post(`${process.env.REACT_APP_LOA_HOST}/v1/collection`, {
         memberNo: vars[0].split("= '")[1].replace("';",""),
         pcId: vars[1].split("= '")[1].replace("';",""),
         worldNo: vars[2].split("= '")[1].replace("';",""),
@@ -202,6 +202,8 @@ function getJewelInfo(json: any): JewelInfo[] {
     const info = [] as JewelInfo[];
     const jewels = Object.values(json["Equip"]).filter((a: any) => a.Element_000?.value.includes("보석"))
 
+    jewels.sort((a: any,_) => a.Element_000.value.includes("멸화") ? -1 : 1)
+
     jewels.forEach((a: any) => {
         const element = {} as JewelInfo;
 
@@ -213,8 +215,9 @@ function getJewelInfo(json: any): JewelInfo[] {
         info.push(element);
     })
 
-    info.sort((a,b) => b.level - a.level)
+    console.log(info)
 
+    info.sort((a,b) => b.level - a.level)
     return info;
 }
 

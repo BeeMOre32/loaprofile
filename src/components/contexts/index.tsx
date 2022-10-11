@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { getCharacterInfo } from "../../func/ScrapingService";
 
 const LoaContext = createContext({
     names: [] as string[],
@@ -38,10 +37,10 @@ interface Props {
       if(info.id) setProfiles([...profiles, info])
     }
     const removeProfile = (id: number) => {
-      const newNames = profiles.filter(a => a.id != id).map(a => a.mainInfo.nickname);
+      const newNames = profiles.filter(a => a.id !== id).map(a => a.mainInfo.nickname);
       window.localStorage.setItem("loa_inv", newNames.join(","))
       setNames(newNames);
-      setProfiles(profiles.filter(a => a.id != id))
+      setProfiles(profiles.filter(a => a.id !== id))
     }
 
       return (

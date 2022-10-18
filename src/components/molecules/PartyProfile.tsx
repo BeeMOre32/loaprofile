@@ -10,6 +10,7 @@ const PartyProfile: React.FC<CharInfo> = (info) => {
       gridTemplateColumns: "1fr",
       border: '1px solid lightgray',
       width: "100%",
+      boxShadow: 'unset'
     }}>
         <div style={{
             width: "100%"

@@ -2,6 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import { Card, Col, Row } from 'antd';
 import React from 'react'
+import { BigText, MediumText } from '../atoms/styles';
 import AccProfile from '../molecules/AccProfile';
 import EquipProfile from '../molecules/EquipProfile';
 import ImprintProfile from '../molecules/ImprintProfile';
@@ -30,10 +31,10 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
     };
 
   return (
-    <div ref={setNodeRef} style={style} >
+    <div ref={setNodeRef} style={style} id={`profile-loa-${info.id}`}>
       <Card.Grid hoverable={false} style={{width: "100%", height: '100%', backgroundColor: 'white',
-       border: '1px solid lightgray',}}>
-        <Row gutter={[10,24]}>
+       border: '1px solid lightgray', boxShadow: 'unset'}}>
+        <Row gutter={[10,24]} align="middle">
           <Col span={24} {...attributes} {...listeners} style={{
             border: "1px solid lightgray"
           }}>
@@ -53,7 +54,10 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
             <JewelProfile jewels={info.jewelInfo}/>
           </Col>
           <Col span={16}>
-            <h3>카드 : {info.card.join(" / ")}</h3>
+            <BigText>카드</BigText>
+            {info.card.map((val, idx) => (
+              <MediumText key={idx}>{val}</MediumText>
+            ))}
           </Col>
           <Col span={8}>
             <ProfileUtils id={info.id}/>

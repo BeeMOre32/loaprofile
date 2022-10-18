@@ -1,4 +1,5 @@
 import React from 'react'
+import { BigText, MediumText } from '../atoms/styles'
 
 const MainProfile: React.FC<MainInfo> = (main) => {
 
@@ -11,29 +12,32 @@ const MainProfile: React.FC<MainInfo> = (main) => {
       <div style={{
           display: "flex",
           alignContent: "center",
-          width: "100%"
+          width: "100%",
+          padding: "2px"
       }}>
         <img style={{
           width: '30px', height: '30px', 
         }} src={`images/jobs/${main.job}.png`}/>
-        <b style={{fontSize: "20px", marginRight: "20px", marginLeft: "10px", lineHeight: "30px"}}>
+        <BigText style={{marginRight: "20px", marginLeft: "10px", lineHeight: "30px"}}>
             {main.displayName ? main.displayName : main.nickname}
-        </b>
-        <b style={{fontSize: "14px", lineHeight: "30px"}}>
+        </BigText>
+        <MediumText style={{lineHeight: "30px"}}>
             {main.server} / {main.job}
-        </b>
+        </MediumText>
       </div>
       <div style={{
           textAlign: "center",
-          marginTop: "15px",
+          marginTop: "10px",
           width: "100%"
       }}>
         <table width="100%" style={{fontSize: "16px"}}>
           <thead>
-            <th>전투</th>
-            <th>아이템</th>
-            <th>공격력</th>
-            <th>체력</th>
+            <tr>
+              <th>전투</th>
+              <th>아이템</th>
+              <th>공격력</th>
+              <th>체력</th>
+            </tr>
           </thead>
           <tbody>            
             <tr>

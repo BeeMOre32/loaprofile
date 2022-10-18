@@ -1,7 +1,6 @@
 import { Button } from 'antd'
 import React from 'react'
-import domtoimage from 'dom-to-image';
-import html2canvas from 'html2canvas';
+import { saveImage } from '../../func/function';
 
 interface DownloaderProps {
     tag: string;
@@ -17,32 +16,16 @@ interface DownloaderProps {
  */
 const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
 
-    const handleSaveClick = () => {
-        const element = document.getElementById(tag)
-        if (!element) return;
-        // domtoimage.toPng(element, { 
-        //     quality: 1,
-        //     bgcolor: 'white'
-        // }).then(function (dataUrl) {
-        //     const link = document.createElement('a');
-        //     link.download = `c${Date.now()}.png`;
-        //     link.href = dataUrl;
-        //     link.click();
-        // });
-        html2canvas(element, {
-            allowTaint: true,
-            useCORS: true
-        }).then((canvas) => {
-            const dataUrl = canvas.toDataURL()
-            const link = document.createElement('a');
-            link.download = `c${Date.now()}.png`;
-            link.href = dataUrl;
-            link.click();
-        })
-    }
-
     return (
-        <Button shape='round' style={{ height: 35, width: 110, fontSize: "1rem", margin: 5}} type="primary" danger onClick={handleSaveClick}>Download</Button>
+        <Button 
+            shape='round' 
+            style={{ height: 35, fontSize: "1rem", margin: 5}} 
+            type="primary" 
+            danger 
+            onClick={() => saveImage(tag)}
+        >
+            이미지 다운
+        </Button>
     )
 }
 

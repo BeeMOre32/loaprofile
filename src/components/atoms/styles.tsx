@@ -18,7 +18,8 @@ export const BigText = styled.b`
 `
 export const MediumText = styled.p`
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
+    margin: 2px;
 `
 export const SmallText = styled.p`
     font-size: 12px;

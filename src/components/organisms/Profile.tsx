@@ -13,7 +13,7 @@ import { Empty, Input } from 'antd';
 import Downloader from '../atoms/Downloader';
 import DataLoader from '../atoms/DataLoader';
 import { ColumnFlexDiv, MediumText, RowFlexDiv } from '../atoms/styles';
-import { getCharInfo } from '../../func/api';
+import { getCharInfo } from '../../func/function';
 import useWindowDimensions from '../../func/useWindowDimensions';
 import { isMobile } from 'react-device-detect';
 
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
         })
     );
 
-    const colCount = Math.min(profiles.length, Math.max(1, Math.floor(width / (isSimple ? 400 : 550))))
+    const colCount = Math.min(profiles.length, isSimple ? 3 : 2, Math.max(1, Math.floor(width / (isSimple ? 400 : 550))))
     
     const searchNickName = () => {
         getCharInfo(nickname, Math.max(...profiles.map(a => a.id), 0) + 1)
@@ -66,7 +66,7 @@ const Profile: React.FC = () => {
             <SortableContext
                 items={profiles.map(a => a.id)}
             >
-                <MediumText>Tip : 회색 박스 부분을 누르고 드래그해 보세요.</MediumText>
+                <MediumText>Tip : 위쪽 회색 박스를 눌러 드래그해 보세요.</MediumText>
                 <RowFlexDiv>
                     <Downloader tag='profile-wrapper'/>
                     <DataLoader/>

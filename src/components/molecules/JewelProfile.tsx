@@ -10,7 +10,8 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
       <div style={{
         display: "flex",
         justifyContent: "center",
-        margin: "0 auto"
+        margin: "0 auto",
+        height: "45px",
       }}>
         {jewels.length > 0 ? jewels.map((a, idx) => (
             <div key={idx}>
@@ -19,7 +20,6 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
                     alignContent: "center",
                     position: "relative",
                     textAlign: 'left',
-                    height: "45px",
                     margin: "2px auto",
                     width: "100%"
                 }}>
@@ -27,7 +27,7 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
                     <div style={{
                         backgroundColor: "black", color: "white", lineHeight: "15px",
                         textAlign: "center",
-                        width: '15px', height: "15px", position:"absolute", bottom: "7px", right: "3px"
+                        width: '17px', height: "17px", position:"absolute", bottom: "1px", right: "3px"
                     }}>
                         {a.level}
                     </div>

@@ -7,7 +7,7 @@ interface StatProps {
 const StatProfile: React.FC<StatProps> = (info) => {
 
     return (
-        <div>
+        <div style={{marginBottom: '10px'}}>
             <b style={{fontSize: "15px"}}>전투 특성</b>
             {info.stats.filter(a => a.value > 200).map((a, idx) => (
                 <div style={{textAlign: "left"}} key={idx}>

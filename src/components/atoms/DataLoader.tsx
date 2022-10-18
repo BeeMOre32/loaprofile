@@ -36,7 +36,8 @@ function DataLoader() {
     beforeUpload: file => {
       const isPNG = file.type === 'text/plain';
       if (!isPNG) {
-        message.error(`${file.name} is not a text file`);
+        message.error(`${file.name}는 텍스트 파일이 아닙니다.`);
+        return;
       }
       setFileList(fileList.concat(file));
       return false;

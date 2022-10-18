@@ -1,7 +1,9 @@
 import { DeleteOutlined, EditOutlined, VerticalAlignBottomOutlined } from "@ant-design/icons"
-import { Button, Input, Modal, notification, Popconfirm, Tooltip } from "antd"
+import { Button, Input, Modal, notification, Popconfirm, Popover, Tooltip } from "antd"
 import React from "react"
 import { useContext, useState } from "react"
+import { saveImage } from "../../func/function"
+import Downloader from "../atoms/Downloader"
 import { LoaContext } from "../contexts"
 
 const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
@@ -42,7 +44,7 @@ const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
         setIsModalOpen(false);
     };
 
-    const download = () => {
+    const downloadJson = () => {
         const profile = profiles.find(a => a.id === id);
         if(profile) {
             let fileName = `${profile.mainInfo.displayName ? profile.mainInfo.displayName : profile.mainInfo.nickname}.txt`;
@@ -62,34 +64,45 @@ const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
         }
     }
 
+    const downloadContent = (
+        <>
+            <Button type="primary" style={{margin: "2px"}} onClick={() => saveImage(`profile-loa-${id}`)}>
+                이미지
+            </Button>
+            <Button type="primary" style={{margin: "2px"}} onClick={downloadJson}>
+                데이터
+            </Button>
+        </>
+    )
+
     return (
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        margin: "0 auto"
+      <div className="profile-buttons"
+        style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: 'center',
+            margin: "0 auto"
       }}>
-        <Tooltip title="데이터다운로드">
-            <Button type="primary" shape="round" onClick={download} style={{margin: "2px"}}>
+        <Popover placement="topRight" title="다운로드" content={downloadContent} trigger="click">
+            <Button type="primary" shape="round" style={{margin: "2px"}}>
                 <VerticalAlignBottomOutlined />
             </Button>
-        </Tooltip>
+        </Popover>
         <Tooltip title="이름 수정">
             <Button shape="round" onClick={showModal} style={{margin: "2px"}}>
                 <EditOutlined />
             </Button>
         </Tooltip>
-        <Tooltip title="삭제">
-            <Popconfirm
-                title="정말 삭제할까요?"
-                onConfirm={deleteList}
-                okText="Yes"
-                cancelText="No"
-            >
-                <Button type="primary" shape="round" danger>
-                    <DeleteOutlined />
-                </Button>
-            </Popconfirm>
-        </Tooltip>
+        <Popconfirm
+            title="정말 삭제할까요?"
+            onConfirm={deleteList}
+            okText="Yes"
+            cancelText="No"
+        >
+            <Button type="primary" shape="round" danger>
+                <DeleteOutlined />
+            </Button>
+        </Popconfirm>
         <Modal title="이름 수정" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <p>닉네임 칸에 표시되는 이름을 바꿀 수 있어요.</p>
             <Input 

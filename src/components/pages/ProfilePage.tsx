@@ -1,6 +1,6 @@
 import { Spin } from 'antd';
 import { useEffect, useContext, useState } from 'react';
-import { getCharInfo } from '../../func/api';
+import { getCharInfo } from '../../func/function';
 import { LoaContext } from '../contexts';
 import Profile from '../organisms/Profile';
 

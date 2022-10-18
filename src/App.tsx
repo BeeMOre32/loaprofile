@@ -10,8 +10,8 @@ function App() {
 
   return (
     <ColumnFlexDiv>
-        <BigText style={{fontSize: '25px', marginTop: "5px"}}>Lost Ark Profile</BigText>
-        <Radio.Group value={location.pathname} style={{margin: "10px"}}>
+        <BigText style={{fontSize: '25px', margin: "20px"}}>Lost Ark Profile</BigText>
+        <Radio.Group value={location.pathname} style={{marginBottom: "40px"}}>
           <Link to="/">
             <Radio.Button value="/">프로필</Radio.Button>
           </Link>

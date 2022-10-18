@@ -8,7 +8,7 @@ import { ColumnFlexDiv } from './styles';
 function DataLoader() {
   const [fileList, setFileList] = useState([] as RcFile[]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { addProfile } = useContext(LoaContext)
+  const { profiles, setProfiles } = useContext(LoaContext)
     
   const showModal = () => {
       setIsModalOpen(true);
@@ -21,7 +21,7 @@ function DataLoader() {
     fileList.forEach((file) => {
       file.text().then((data) => {
         const json = JSON.parse(data) as CharInfo;
-        addProfile(json)
+        setProfiles([...profiles, json])
       })
     })
     setIsModalOpen(false);

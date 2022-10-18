@@ -5,10 +5,14 @@ interface CharInfo {
     id: number;
     mainInfo : MainInfo;
     collectInfo: BaseKeyVal[];
-    equipInfo: EquipInfo[];
-    statInfo: StatInfo;
+    statInfo: BaseKeyVal[];
+    imprintingInfo: BaseKeyVal[];
     jewelInfo: JewelInfo[],
     card: string[];
+
+    equipInfo: MainEquipInfo;
+    subEquipInfo: SubEquipInfo;
+    simpleEquipInfo: SimpleEquipInfo;
 }
 
 // 메인 정보
@@ -23,63 +27,61 @@ interface MainInfo {
     fightLv: number;    // 전투레벨
     itemLv: number;     // 아이템레벨
     partyLv: number;    // 원대레벨
-    homeLv: number;     // 영지레벨
-}
-
-// 장비 정보
-interface EquipInfo {
-    name: string;
-    set: string;
-    setLv: number;     // 세트레벨
-    quality: number;   // 품질
-    src: string;       // 이미지 경로
-    color: string;     // 이미지 색상
-}
-
-// 악세 정보
-interface StatInfo {
-    accessories: AccessaryInfo[];
-    books: BaseKeyVal[];
-    stats: BaseKeyVal[];
-    imprinting: BaseKeyVal[];
-    stone: StoneInfo;
-    brace: BraceInfo;
-}
-
-interface AccessaryInfo {
-    name: string;
-    quality: number;   // 품질
-    src: string;       // 이미지 경로
-    color: string;     // 이미지 색상
-}
-
-// 돌 정보
-interface StoneInfo {
-    name: string;
-    first: number;
-    second: number;
-    minus: number;
-    src: string;       // 이미지 경로
-    color: string;     // 이미지 색상
-}
-
-// 팔찌 정보
-interface BraceInfo {
-    name: string;
-    options: string[];
-    src: string;       // 이미지 경로
-    color: string;     // 이미지 색상
-}
-
-// 보석 정보
-interface JewelInfo {
-    desc: string;
-    level: number;
-    src: string; 
-    color: string;
 }
 
 interface BaseKeyVal {
     name: string;
     value: number;
+}
+
+interface ItemInfo {
+    src: string;
+    color: string;
+}
+
+// 악세 정보
+interface AccessaryInfo extends ItemInfo {
+    name: string;
+    quality: number;   // 품질
+}
+
+// 팔찌 정보
+interface BraceInfo extends ItemInfo {
+    name: string;
+    options: string[];
+}
+
+// 보석 정보
+interface JewelInfo extends ItemInfo {
+    name: string;
+    desc: string;
+    level: number;
+}
+
+// 돌 정보
+interface ClothesInfo extends ItemInfo {
+    name: string;
+    quality: number; 
+    level: number;
+    set: string;
+    setLv: number;
+}
+
+interface MainEquipInfo {
+    defense: ClothesInfo[];
+    weapon: ClothesInfo;
+}
+
+interface SubEquipInfo {
+    accessory: AccessaryInfo[],
+    brace: BraceInfo
+}
+
+interface SimpleEquipInfo {
+    defenseCut: number;
+    weapon: ClothesInfo;
+    setName: string;
+    setLv: string;
+    accAvgQuality: number;
+    brace: BraceInfo;
 }

@@ -1,25 +1,3 @@
-export const tagRegex = /(<([^>]+)>)/ig;
-export const intRegex = /\D/g;
-
-export const effectOptions = [
-    "쐐기",
-    "망치",
-    "순환",
-    "열정",
-    "냉정",
-    "비수",
-    "약점 노출",
-    "우월",
-    "습격",
-    "정밀",
-    "기습",
-    "결투",
-    "돌진",
-    "마나회수",
-    "깨달음",
-    "응원"
-]
-
 export const jobBooks = [
     "광기", "광전사의 비기",
     "전투 태세", "고독한 기사",

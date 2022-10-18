@@ -1,8 +1,9 @@
+import { notification } from "antd";
+import axios from "axios";
 import { createContext, useState } from "react";
 
 const LoaContext = createContext({
     names: [] as string[],
-    addName: (name: string) => {},
     profiles: [] as CharInfo[],
     setProfiles: (infos: CharInfo[]) => {},
     addProfile: (info: CharInfo) => {},
@@ -18,18 +19,18 @@ interface Props {
     const [names, setNames] = useState(
         Array.from(new Set(window.localStorage.getItem("loa_inv")?.split(","))) || []
     );
-    
-    const addName = (name: string) => {
-      const newNames = [...names, name];
-      window.localStorage.setItem("loa_inv", newNames.join(","))
-      setNames(newNames);
-    }
 
     const [profiles, setProfiles] = useState([] as CharInfo[]);
     
-    const addProfile = (info: CharInfo) => {
-      if(info.id) setProfiles([...profiles, info])
+    const addProfile = async (info: CharInfo) => {
+      if(info.id) {
+        setProfiles([...profiles, info])
+        const newNames = [...names, info.mainInfo.nickname]
+        window.localStorage.setItem("loa_inv", newNames.join(","))
+        setNames(newNames);
+      }
     }
+
     const removeProfile = (id: number) => {
       const newNames = profiles.filter(a => a.id !== id).map(a => a.mainInfo.nickname);
       window.localStorage.setItem("loa_inv", newNames.join(","))
@@ -41,7 +42,6 @@ interface Props {
         <LoaContext.Provider
           value={{
             names,
-            addName,
             profiles,
             setProfiles,
             addProfile,

@@ -10,17 +10,21 @@ import ProfileCard from './ProfileCard';
 import { LoaContext } from '../contexts';
 import PartyProfile from '../molecules/PartyProfile';
 import { Empty, Input } from 'antd';
-import { getCharacterInfo } from '../../func/ScrapingService';
 import Downloader from '../atoms/Downloader';
 import DataLoader from '../atoms/DataLoader';
 import { ColumnFlexDiv, MediumText, RowFlexDiv } from '../atoms/styles';
+import { getCharInfo } from '../../func/api';
+import useWindowDimensions from '../../func/useWindowDimensions';
+import { isMobile } from 'react-device-detect';
 
 const { Search } = Input;
 
 const Profile: React.FC = () => {
 
-    const { setProfiles, addName, addProfile, profiles } = useContext(LoaContext)
-    const [nickname, setNickname] = useState("");
+    const { setProfiles, addProfile, profiles } = useContext(LoaContext)
+    const [nickname, setNickname] = useState("")
+    const [isSimple, setIsSimple] = useState(isMobile)
+    const { width } = useWindowDimensions()
 
     const sensors = useSensors(
         useSensor(MouseSensor),
@@ -29,12 +33,13 @@ const Profile: React.FC = () => {
         })
     );
 
+    const colCount = Math.min(profiles.length, Math.max(1, Math.floor(width / (isSimple ? 400 : 550))))
+    
     const searchNickName = () => {
-        getCharacterInfo(nickname, Math.max(...profiles.map(a => a.id), 0) + 1)
+        getCharInfo(nickname, Math.max(...profiles.map(a => a.id), 0) + 1)
         .then((val) => {
-          if(val.mainInfo.job) {
+          if(val.id) {
             addProfile(val)
-            addName(val.mainInfo.nickname);
             setNickname("")
           }
         })
@@ -76,13 +81,22 @@ const Profile: React.FC = () => {
                 />
                 <RowFlexDiv style={{minHeight: '200px'}}>
                     { profiles.length > 0 ?
-                        <ColumnFlexDiv id="profile-wrapper" style={{ maxWidth: `${600*Math.min(2, profiles.length)}px`}}>
-                            <PartyProfile {...profiles[0]}/>
+                        <ColumnFlexDiv id="profile-wrapper" style={{
+                            width: "95%",
+                            maxWidth: "1250px"
+                        }}>
                             <div style={{
                                 display: "grid",
                                 gap: "2px",
-                                gridTemplateColumns: "repeat(auto-fit, minmax(550px, auto))",
+                                justifyContent: width > 550 ? "center" : "normal",
+                                gridTemplateColumns: `repeat(auto-fit, ${isSimple ? "400px" : "550px"}`,
                             }}>
+                                <div style={{
+                                    minWidth: isSimple ? "400px" : "550px",
+                                    gridColumn: `span ${colCount}`,
+                                }}>
+                                    <PartyProfile {...profiles[0]}/>
+                                </div>
                                 {profiles.map(a => a.id).map((id) => {
                                     const profile = profiles.find(a => a.id === id) || {} as CharInfo;
                                     return <ProfileCard key={id} {...profile}/>

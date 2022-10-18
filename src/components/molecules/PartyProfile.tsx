@@ -9,12 +9,12 @@ const PartyProfile: React.FC<CharInfo> = (info) => {
       display: "grid",
       gridTemplateColumns: "1fr",
       border: '1px solid lightgray',
-      width: "100%"
+      width: "100%",
     }}>
         <div style={{
             width: "100%"
         }}>
-            <BigText>#대표서버 #{info.mainInfo.server} #원정대Lv.{info.mainInfo.partyLv} </BigText>
+            <BigText>#대표 #원정대Lv.{info.mainInfo.partyLv} #{info.mainInfo.server}</BigText>
             <MediumText>Made By LOA Profile</MediumText>
         </div>
         <div style={{

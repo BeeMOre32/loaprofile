@@ -1,11 +1,11 @@
-const AccProfile: React.FC<StatInfo> = (info) => {
+const AccProfile: React.FC<SubEquipInfo> = (info) => {
 
     return ( !info ? null : 
       <div style={{
         display: "flex",
         flexDirection: "column"
       }}>
-        {info.accessories.map((a, idx) => (
+        {info.accessory.map((a, idx) => (
             <div key={idx}>
                 <div style={{
                     display: "flex",

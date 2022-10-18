@@ -1,3 +1,5 @@
+import { BigText } from "../atoms/styles"
+
 interface JewelProps {
     jewels: JewelInfo[]
 }
@@ -10,7 +12,7 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
         justifyContent: "center",
         margin: "0 auto"
       }}>
-        {jewels.map((a, idx) => (
+        {jewels.length > 0 ? jewels.map((a, idx) => (
             <div key={idx}>
                 <div style={{
                     display: "flex",
@@ -31,7 +33,7 @@ const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
                     </div>
                 </div>
             </div>
-        ))}
+        )) : <BigText>장착한 보석이 없습니다.</BigText>}
       </div>
     )
   }

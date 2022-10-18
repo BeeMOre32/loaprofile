@@ -16,7 +16,6 @@ code {
     monospace;
 }
 
-.profile-wrapper {
-  border: none;
-  width: 95%;
+* {
+  box-shadow: unset !important;
 }

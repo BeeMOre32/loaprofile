@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import React from 'react'
 import domtoimage from 'dom-to-image';
+import html2canvas from 'html2canvas';
 
 interface DownloaderProps {
     tag: string;
@@ -19,15 +20,25 @@ const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
     const handleSaveClick = () => {
         const element = document.getElementById(tag)
         if (!element) return;
-        domtoimage.toPng(element, { 
-            quality: 1,
-            bgcolor: 'white'
-        }).then(function (dataUrl) {
-               var link = document.createElement('a');
-               link.download = `c${Date.now()}.png`;
-               link.href = dataUrl;
-               link.click();
-           });
+        // domtoimage.toPng(element, { 
+        //     quality: 1,
+        //     bgcolor: 'white'
+        // }).then(function (dataUrl) {
+        //     const link = document.createElement('a');
+        //     link.download = `c${Date.now()}.png`;
+        //     link.href = dataUrl;
+        //     link.click();
+        // });
+        html2canvas(element, {
+            allowTaint: true,
+            useCORS: true
+        }).then((canvas) => {
+            const dataUrl = canvas.toDataURL()
+            const link = document.createElement('a');
+            link.download = `c${Date.now()}.png`;
+            link.href = dataUrl;
+            link.click();
+        })
     }
 
     return (

@@ -1,31 +1,28 @@
-import { Spin } from 'antd';
-import { useEffect, useContext, useState } from 'react';
+import { Radio } from 'antd';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { BigText, ColumnFlexDiv } from './components/atoms/styles';
-import { LoaContext } from './components/contexts';
-import Profile from './components/organisms/Profile';
-import { getCharacterInfo } from './func/ScrapingService';
-
+import ProfilePage from './components/pages/ProfilePage';
+import SearchPage from './components/pages/SearchPage';
 
 function App() {
 
-  const { names, setProfiles } = useContext(LoaContext)
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let infos = [] as Promise<CharInfo>[];
-    names.forEach((name, idx) => {
-      infos.push(getCharacterInfo(name, idx+1))
-    })
-    Promise.all(infos).then(arr => {
-      setProfiles(arr);
-      setLoading(false)
-    });
-  }, [])
+  const location = useLocation()
 
   return (
     <ColumnFlexDiv>
-      <BigText style={{fontSize: '25px', marginTop: "5px"}}>Lost Ark Profile</BigText>
-      {loading ? <Spin tip="Loading..." style={{marginTop: "30px"}}/> : <Profile/>}
+        <BigText style={{fontSize: '25px', marginTop: "5px"}}>Lost Ark Profile</BigText>
+        <Radio.Group value={location.pathname} style={{margin: "10px"}}>
+          <Link to="/">
+            <Radio.Button value="/">프로필</Radio.Button>
+          </Link>
+          <Link to="/search">
+            <Radio.Button value="/search">군장검사</Radio.Button>
+          </Link>
+        </Radio.Group>
+        <Routes>
+          <Route path="/" element={<ProfilePage />}/>
+					<Route path="/search" element={<SearchPage />}/>
+        </Routes>
     </ColumnFlexDiv>
   );
 }

@@ -1,17 +1,11 @@
-interface EquipProps {
-    equip: EquipInfo[]
-}
-
-const EquipProfile: React.FC<EquipProps> = ({equip}: EquipProps) => {
-
-    const newEquip = [...equip.slice(1), equip[0]]
+const EquipProfile: React.FC<MainEquipInfo> = (info) => {
 
     return (
       <div style={{
         display: "flex",
         flexDirection: "column",
       }}>
-        {newEquip.map((a, idx) => (
+        {[...info.defense, info.weapon].map((a, idx) => (
             <div key={idx}>
                 <div style={{
                     display: "flex",

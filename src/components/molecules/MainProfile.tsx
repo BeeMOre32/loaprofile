@@ -16,19 +16,19 @@ const MainProfile: React.FC<MainInfo> = (main) => {
           padding: "5px"
       }}>
         <IconImg src={`images/jobs/${main.job}.png`}/>
-        <BigText style={{marginRight: "20px", marginLeft: "10px", lineHeight: "40px"}}>
+        <BigText style={{marginLeft: "10px", lineHeight: "40px"}}>
             {main.displayName ? main.displayName : main.nickname}
         </BigText>
-        <MediumText style={{lineHeight: "40px"}}>
-            {main.server} / {main.job}
-        </MediumText>
       </div>
+      <MediumText style={{lineHeight: "20px", color: "blue"}}>
+          {main.server} / {main.job}
+      </MediumText>
       <div style={{
           textAlign: "center",
           marginTop: "5px",
       }}>
         <table width="100%" style={{fontSize: "15px", fontWeight: 600}}>
-          <thead>
+          <thead style={{fontSize: '12px'}}>
             <tr>
               <th>전투</th>
               <th>아이템</th>

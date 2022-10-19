@@ -50,7 +50,7 @@ function DataLoader() {
       <Modal open={isModalOpen} 
           okButtonProps={{ style: {display: 'none'} }}
           onCancel={handleCancel}
-          title="Data Copy &#38; Load"           
+          title="Upload"           
       >
         <ColumnFlexDiv>
           <Upload {...props}>

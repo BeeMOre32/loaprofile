@@ -11,14 +11,14 @@ function App() {
   return (
     <ColumnFlexDiv>
         <BigText style={{fontSize: '25px', margin: "20px"}}>Lost Ark Profile</BigText>
-        <Radio.Group value={location.pathname} style={{marginBottom: "40px"}}>
+        {/* <Radio.Group value={location.pathname} style={{marginBottom: "40px"}}>
           <Link to="/">
             <Radio.Button value="/">프로필</Radio.Button>
           </Link>
           <Link to="/search">
             <Radio.Button value="/search">군장검사</Radio.Button>
           </Link>
-        </Radio.Group>
+        </Radio.Group> */}
         <Routes>
           <Route path="/" element={<ProfilePage />}/>
 					<Route path="/search" element={<SearchPage />}/>

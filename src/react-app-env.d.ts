@@ -84,4 +84,6 @@ interface SimpleEquipInfo {
     setLv: string;
     accAvgQuality: number;
     brace: BraceInfo;
+    accSrc: string;
+    defenseSrc: string;
 }

@@ -12,40 +12,37 @@ const PartyProfile: React.FC<CharInfo> = (info) => {
       width: "100%",
       boxShadow: 'unset'
     }}>
-        <div style={{
-            width: "100%"
-        }}>
-            <BigText>#대표 #원정대Lv.{info.mainInfo.partyLv} #{info.mainInfo.server}</BigText>
-            <MediumText>Made By LOA Profile</MediumText>
-        </div>
+        <BigText style={{wordBreak: "keep-all"}}>#대표 #원정대Lv.{info.mainInfo.partyLv} #{info.mainInfo.server}</BigText>
         <div style={{
             textAlign: "center",
-            marginTop: "10px",
-            width: "100%"
+            margin: "10px",
+            width: "100%",
+            gridColumn: "span 2"
         }}>
             <table width="100%" style={{fontSize: "16px"}}>
-            <thead>
-                <tr>
-                    {info.collectInfo.map((a, idx) => (
-                        <Tooltip key={idx} title={a.name}>
-                            <th>
-                                <img src={`images/collections/${a.name}.png`} />
+                <thead>
+                    <tr>
+                        {info.collectInfo.map((a, idx) => (
+                            <Tooltip key={idx} title={a.name}>
+                                <th>
+                                    <img src={`images/collections/${a.name}.png`} />
+                                </th>
+                            </Tooltip>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>            
+                    <tr>
+                        {info.collectInfo.map((a, idx) => (
+                            <th key={idx}>
+                                {a.value}
                             </th>
-                        </Tooltip>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>            
-                <tr>
-                    {info.collectInfo.map((a, idx) => (
-                        <th key={idx}>
-                            {a.value}
-                        </th>
-                    ))}
-                </tr>
-            </tbody>
+                        ))}
+                    </tr>
+                </tbody>
             </table>
         </div>
+        <MediumText>Made By LOA Profile</MediumText>
     </Card.Grid>
   )
 }

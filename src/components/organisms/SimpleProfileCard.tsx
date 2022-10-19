@@ -8,10 +8,10 @@ import ImprintProfile from '../molecules/ImprintProfile';
 import JewelProfile from '../molecules/JewelProfile';
 import MainProfile from '../molecules/MainProfile';
 import ProfileUtils from '../molecules/ProfileUtils';
+import SimpleEquipProfile from '../molecules/SimpleEquipProfile';
 import StatProfile from '../molecules/StatProfile';
-import SubEquipProfile from '../molecules/SubEquipProfile';
 
-const ProfileCard : React.FC<CharInfo> = (info) => {
+const SimpleProfileCard : React.FC<CharInfo> = (info) => {
 
     const {
         attributes,
@@ -32,7 +32,7 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
 
   return (
     <div ref={setNodeRef} style={style} id={`profile-loa-${info.id}`}>
-      <Card.Grid hoverable={false} style={{width: "100%", minWidth: '550px', height: '100%', backgroundColor: 'white',
+      <Card.Grid hoverable={false} style={{width: "100%", minWidth: '400px', height: '100%', backgroundColor: 'white',
        border: '1px solid lightgray', boxShadow: 'unset'}}>
         <Row gutter={[10,24]} align="middle">
           <Col span={24} {...attributes} {...listeners} style={{
@@ -40,26 +40,25 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
           }}>
             <MainProfile {...info.mainInfo}/>
           </Col>
-          <Col span={12}>
-            <EquipProfile {...info.equipInfo}/>
+          <Col span={16}>
+            <SimpleEquipProfile {...info.simpleEquipInfo}/>
           </Col>
-          <Col span={6}>
-            <SubEquipProfile {...info.subEquipInfo}/>
-          </Col>
-          <Col span={6}>
+          <Col span={8}>
             <StatProfile stats={info.statInfo}/>
             <ImprintProfile imprinting={info.imprintingInfo}/>
           </Col>
           <Col span={24}>
-            <JewelProfile jewels={info.jewelInfo} isSimple={false}/>
+            <JewelProfile jewels={info.jewelInfo} isSimple={true}/>
           </Col>
-          <Col span={16}>
+          <Col span={6}>
             <BigText>카드</BigText>
+          </Col>
+          <Col span={18}>
             {info.card.map((val, idx) => (
               <MediumText key={idx}>{val}</MediumText>
             ))}
           </Col>
-          <Col span={8}>
+          <Col span={24}>
             <ProfileUtils id={info.id}/>
           </Col>
         </Row>
@@ -68,4 +67,4 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
   )
 }
 
-export default ProfileCard
+export default SimpleProfileCard

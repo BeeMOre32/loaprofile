@@ -1,5 +1,5 @@
 import React from 'react'
-import { BigText, MediumText } from '../atoms/styles'
+import { BigText, IconImg, MediumText } from '../atoms/styles'
 
 const MainProfile: React.FC<MainInfo> = (main) => {
 
@@ -7,30 +7,27 @@ const MainProfile: React.FC<MainInfo> = (main) => {
     <div style={{
       display: "grid",
       gridTemplateColumns: "1fr",
-      paddingBottom: "5px"
+      paddingBottom: "3px"
     }}>
       <div style={{
           display: "flex",
           alignContent: "center",
           width: "100%",
-          padding: "2px"
+          padding: "5px"
       }}>
-        <img style={{
-          width: '30px', height: '30px', 
-        }} src={`images/jobs/${main.job}.png`}/>
-        <BigText style={{marginRight: "20px", marginLeft: "10px", lineHeight: "30px"}}>
+        <IconImg src={`images/jobs/${main.job}.png`}/>
+        <BigText style={{marginRight: "20px", marginLeft: "10px", lineHeight: "40px"}}>
             {main.displayName ? main.displayName : main.nickname}
         </BigText>
-        <MediumText style={{lineHeight: "30px"}}>
+        <MediumText style={{lineHeight: "40px"}}>
             {main.server} / {main.job}
         </MediumText>
       </div>
       <div style={{
           textAlign: "center",
-          marginTop: "10px",
-          width: "100%"
+          marginTop: "5px",
       }}>
-        <table width="100%" style={{fontSize: "16px"}}>
+        <table width="100%" style={{fontSize: "15px", fontWeight: 600}}>
           <thead>
             <tr>
               <th>전투</th>

@@ -24,7 +24,7 @@ const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
             danger 
             onClick={() => saveImage(tag)}
         >
-            이미지 다운
+            전체 Download
         </Button>
     )
 }

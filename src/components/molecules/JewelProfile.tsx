@@ -1,40 +1,35 @@
-import { BigText } from "../atoms/styles"
+import { Tooltip } from "antd"
+import { BigText, IconImg, ItemFlexDiv } from "../atoms/styles"
 
 interface JewelProps {
     jewels: JewelInfo[]
+    isSimple: boolean
 }
 
-const JewelProfile: React.FC<JewelProps> = ({jewels}: JewelProps) => {
+const JewelProfile: React.FC<JewelProps> = ({jewels, isSimple}: JewelProps) => {
 
     return (
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        margin: "0 auto",
-        height: "45px",
+      <ItemFlexDiv style={{
+        justifyContent: "center", 
+        flexWrap: "wrap", 
+        maxWidth: isSimple ? "270px" : "500px",
+        margin: "2px auto"
       }}>
         {jewels.length > 0 ? jewels.map((a, idx) => (
-            <div key={idx}>
-                <div style={{
-                    display: "flex",
-                    alignContent: "center",
-                    position: "relative",
-                    textAlign: 'left',
-                    margin: "2px auto",
-                    width: "100%"
-                }}>
-                    <img src={a.src} crossOrigin="anonymous" style={{ width: '40px', height: '40px', marginRight: "2px", border: `2px solid ${a.color}`}}/>
+            <Tooltip title={a.desc}>
+                <div key={idx} style={{position: "relative"}}>
+                    <IconImg src={a.src} crossOrigin="anonymous" style={{margin: "1px", border: `2px solid ${a.color}`}}/>
                     <div style={{
                         backgroundColor: "black", color: "white", lineHeight: "15px",
-                        textAlign: "center",
-                        width: '17px', height: "17px", position:"absolute", bottom: "1px", right: "3px"
+                        textAlign: "center", fontWeight: 600,
+                        width: '17px', height: "17px", position:"absolute", bottom: "1px", right: "2px"
                     }}>
                         {a.level}
                     </div>
                 </div>
-            </div>
+            </Tooltip>
         )) : <BigText>장착한 보석이 없습니다.</BigText>}
-      </div>
+      </ItemFlexDiv>
     )
   }
   

@@ -48,7 +48,7 @@ const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
         const profile = profiles.find(a => a.id === id);
         if(profile) {
             let fileName = `${profile.mainInfo.displayName ? profile.mainInfo.displayName : profile.mainInfo.nickname}.txt`;
-            let output = JSON.stringify(profile);
+            let output = JSON.stringify(profile, null, 2);
             const element = document.createElement('a');
             const file = new Blob([output], {
               type: 'text/plain',

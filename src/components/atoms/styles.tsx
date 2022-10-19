@@ -21,6 +21,22 @@ export const MediumText = styled.p`
     font-weight: 600;
     margin: 2px;
 `
-export const SmallText = styled.p`
+export const SmallText = styled.b`
     font-size: 12px;
+`
+
+// 이미지 아이콘
+export const IconImg = styled.img`
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+`
+
+// 장비 표시 용도의 Flexbox
+export const ItemFlexDiv = styled.div`
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin: 2px;
+    min-height: 40px;
 `

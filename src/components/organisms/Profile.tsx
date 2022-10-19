@@ -9,13 +9,14 @@ import React, { useContext, useState } from 'react'
 import ProfileCard from './ProfileCard';
 import { LoaContext } from '../contexts';
 import PartyProfile from '../molecules/PartyProfile';
-import { Empty, Input } from 'antd';
+import { Checkbox, Empty, Input } from 'antd';
 import Downloader from '../atoms/Downloader';
 import DataLoader from '../atoms/DataLoader';
 import { ColumnFlexDiv, MediumText, RowFlexDiv } from '../atoms/styles';
 import { getCharInfo } from '../../func/function';
 import useWindowDimensions from '../../func/useWindowDimensions';
 import { isMobile } from 'react-device-detect';
+import SimpleProfileCard from './SimpleProfileCard';
 
 const { Search } = Input;
 
@@ -54,8 +55,7 @@ const Profile: React.FC = () => {
             
           setProfiles(arrayMove(profiles, oldIndex, newIndex));
         }
-    }
-    
+    }    
 
     return (
         <DndContext 
@@ -71,25 +71,34 @@ const Profile: React.FC = () => {
                     <Downloader tag='profile-wrapper'/>
                     <DataLoader/>
                 </RowFlexDiv>
-                <Search 
-                    placeholder="닉네임을 입력하세요"
-                    value={nickname} 
-                    allowClear
-                    style={{maxWidth: 250}}
-                    onChange={(e) => setNickname(e.target.value)}
-                    onSearch={searchNickName}
-                />
+                <RowFlexDiv>
+                    <Search 
+                        placeholder="닉네임"
+                        value={nickname} 
+                        allowClear
+                        style={{maxWidth: 200}}
+                        onChange={(e) => setNickname(e.target.value)}
+                        onSearch={searchNickName}
+                    />
+                    <Checkbox 
+                        defaultChecked={isSimple} 
+                        onChange={() => setIsSimple(!isSimple)}
+                        style={{margin: "5px", marginLeft: "20px"}}
+                    >
+                        간단 프로필
+                    </Checkbox>
+                </RowFlexDiv>
                 <RowFlexDiv style={{minHeight: '200px'}}>
                     { profiles.length > 0 ?
                         <ColumnFlexDiv id="profile-wrapper" style={{
                             width: "95%",
-                            maxWidth: "1250px"
+                            maxWidth: `${colCount*(isSimple ? 400 : 550) + 50}px`
                         }}>
                             <div style={{
                                 display: "grid",
                                 gap: "2px",
                                 justifyContent: width > 550 ? "center" : "normal",
-                                gridTemplateColumns: `repeat(auto-fit, ${isSimple ? "400px" : "550px"}`,
+                                gridTemplateColumns: `repeat(auto-fit)}`,
                             }}>
                                 <div style={{
                                     minWidth: isSimple ? "400px" : "550px",
@@ -99,7 +108,9 @@ const Profile: React.FC = () => {
                                 </div>
                                 {profiles.map(a => a.id).map((id) => {
                                     const profile = profiles.find(a => a.id === id) || {} as CharInfo;
-                                    return <ProfileCard key={id} {...profile}/>
+                                    return isSimple 
+                                    ? <SimpleProfileCard key={id} {...profile}/>
+                                    : <ProfileCard key={id} {...profile}/>
                                 })}
                             </div>
                         </ColumnFlexDiv>

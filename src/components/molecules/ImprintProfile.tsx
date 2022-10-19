@@ -7,7 +7,7 @@ interface ImprintProps {
 const ImprintProfile: React.FC<ImprintProps> = (info) => {
 
     return (
-        <div style={{marginBottom: '10px'}}>
+        <div>
             <b style={{fontSize: "15px"}}>각인 효과</b>
             {info.imprinting.map((a, idx) => (
                 <div style={{textAlign: "left"}} key={idx}>

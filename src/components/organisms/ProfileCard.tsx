@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Divider, Row } from 'antd';
 import React from 'react'
 import { BigText, MediumText } from '../atoms/styles';
 import EquipProfile from '../molecules/EquipProfile';
@@ -46,8 +46,11 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
           <Col span={6}>
             <SubEquipProfile {...info.subEquipInfo}/>
           </Col>
-          <Col span={6}>
+          <Col span={6}  style={{
+            border: "1px solid lightgray"
+          }}>
             <StatProfile stats={info.statInfo}/>
+            <Divider style={{width: "100%", backgroundColor: "lightgray", margin: "10px 0 10px 0"}}/>
             <ImprintProfile imprinting={info.imprintingInfo}/>
           </Col>
           <Col span={24}>

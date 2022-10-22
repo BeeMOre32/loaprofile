@@ -79,6 +79,7 @@ interface SubEquipInfo {
 
 interface SimpleEquipInfo {
     defenseCut: number;
+    defAvgQuality: number;
     weapon: ClothesInfo;
     setName: string;
     setLv: string;

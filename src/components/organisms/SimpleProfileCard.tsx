@@ -40,10 +40,10 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
           }}>
             <MainProfile {...info.mainInfo}/>
           </Col>
-          <Col span={16}>
+          <Col span={14}>
             <SimpleEquipProfile {...info.simpleEquipInfo}/>
           </Col>
-          <Col span={8}  style={{
+          <Col span={10}  style={{
             border: "1px solid lightgray"
           }}>
             <StatProfile stats={info.statInfo}/>

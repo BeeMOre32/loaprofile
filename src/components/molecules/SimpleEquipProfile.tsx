@@ -1,3 +1,5 @@
+import { InfoCircleOutlined, InfoCircleTwoTone } from '@ant-design/icons'
+import { Tooltip } from 'antd'
 import React from 'react'
 import { getColor } from '../../func/function'
 import { ColumnFlexDiv, IconImg, ItemFlexDiv, SmallText } from '../atoms/styles'
@@ -41,10 +43,19 @@ const SimpleEquipProfile: React.FC<SimpleEquipInfo> = (info) => {
                 </div>
             </ItemFlexDiv>
             <ItemFlexDiv>
-                <IconImg src={info.accSrc} crossOrigin="anonymous" style={{marginRight: "5px", border: `2px solid gray`}}/>
+                <IconImg src={info.accSrc.length > 0 ? info.accSrc : "images/empty.png"} crossOrigin="anonymous" style={{marginRight: "5px", border: `2px solid gray`}}/>
                 <div>
                     <SmallText style={{fontSize: "14px"}}>
-                        악세 평균 품질 <b style={{color: getColor(info.accAvgQuality)}}>{info.accAvgQuality}</b>
+                        악세 품질 <b style={{color: getColor(info.accAvgQuality)}}>{info.accAvgQuality}</b>&nbsp;&nbsp;
+                        <Tooltip title={
+                            <>
+                                악세서리별로 가중치를 반영한 품질입니다. <br/>
+                                목걸이는 10, 귀걸이는 3, 반지는 2의 가중치가 책정됩니다. <br/>
+                                기준은 악세서리별 상승되는 최대 특성값입니다.
+                            </>
+                        }>
+                            <InfoCircleTwoTone/>
+                        </Tooltip>
                     </SmallText>
                 </div>
             </ItemFlexDiv>

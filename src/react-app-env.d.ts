@@ -13,6 +13,9 @@ interface CharInfo {
     equipInfo: MainEquipInfo;
     subEquipInfo: SubEquipInfo;
     simpleEquipInfo: SimpleEquipInfo;
+
+    isSafe: boolean;
+    reason: string;
 }
 
 // 메인 정보

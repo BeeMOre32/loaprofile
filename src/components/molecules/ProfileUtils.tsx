@@ -6,7 +6,7 @@ import { saveImage } from "../../func/function"
 import Downloader from "../atoms/Downloader"
 import { LoaContext } from "../contexts"
 
-const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
+const ProfileUtils: React.FC<{id : number, isSafe: boolean}> = ({id, isSafe}: {id : number, isSafe: boolean}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { profiles, removeProfile, addProfile, setProfiles } = useContext(LoaContext)
@@ -88,11 +88,12 @@ const ProfileUtils: React.FC<{id : number}> = ({id}: {id : number}) => {
                 <VerticalAlignBottomOutlined />
             </Button>
         </Popover>
+        { isSafe ? 
         <Tooltip title="이름 수정">
             <Button shape="round" onClick={showModal} style={{margin: "2px"}}>
                 <EditOutlined />
             </Button>
-        </Tooltip>
+        </Tooltip> : null}
         <Popconfirm
             title="정말 삭제할까요?"
             onConfirm={deleteList}

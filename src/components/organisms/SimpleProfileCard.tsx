@@ -10,6 +10,7 @@ import MainProfile from '../molecules/MainProfile';
 import ProfileUtils from '../molecules/ProfileUtils';
 import SimpleEquipProfile from '../molecules/SimpleEquipProfile';
 import StatProfile from '../molecules/StatProfile';
+import UserIdentity from '../molecules/UserIdentity';
 
 const SimpleProfileCard : React.FC<CharInfo> = (info) => {
 
@@ -32,13 +33,15 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
 
   return (
     <div ref={setNodeRef} style={style} id={`profile-loa-${info.id}`}>
-      <Card.Grid hoverable={false} style={{width: "100%", minWidth: '400px', height: '100%', backgroundColor: 'white',
+      <Card.Grid hoverable={false} style={{width: "100%", minWidth: '400px', height: '100%', 
+       backgroundColor: info.isSafe ? 'white' : "lightyellow",
        border: '1px solid lightgray', boxShadow: 'unset'}}>
         <Row gutter={[10,24]} align="middle">
           <Col span={24} {...attributes} {...listeners} style={{
             border: "1px solid lightgray"
           }}>
             <MainProfile {...info.mainInfo}/>
+            <UserIdentity isSafe={info.isSafe} reason={info.reason}/>
           </Col>
           <Col span={14}>
             <SimpleEquipProfile {...info.simpleEquipInfo}/>
@@ -62,7 +65,7 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
             ))}
           </Col>
           <Col span={24}>
-            <ProfileUtils id={info.id}/>
+            <ProfileUtils id={info.id} isSafe={info.isSafe}/>
           </Col>
         </Row>
       </Card.Grid>

@@ -13,7 +13,7 @@ function ProfilePage() {
   useEffect(() => {
     let infos = [] as Promise<CharInfo>[];
     names.forEach((name, idx) => {
-      infos.push(getCharInfo(name, idx+1))
+      if(name.length > 0) infos.push(getCharInfo(name, idx+1))
     })
     Promise.all(infos).then(arr => {
       setProfiles(arr.filter(a => a.id));

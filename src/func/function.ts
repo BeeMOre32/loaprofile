@@ -1,22 +1,26 @@
 import { notification } from "antd"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import html2canvas from "html2canvas"
 
 export const getCharInfo = async (name: string, id: number) => {
     const url = `${process.env.REACT_APP_LOA_HOST}/v2/char/${encodeURI(name)}`
-    const res = await axios.get(url)
+    
+    try {
+        const res = await axios.get(url)
 
-    if (res.status === 200) {
-        const info = res.data as CharInfo
-        info.id = id
-        return info
-    } else {
+        if (res.status === 200) {
+            const info = res.data as CharInfo
+            info.id = id
+            return info
+        } 
+    } catch (err: any) {
         notification.error({
-            message: res.data.detail,
+            message: "해당하는 캐릭터가 없거나, 인게임 점검 중입니다.",
             description: name
         })
-        return {} as CharInfo
     }
+        
+    return {} as CharInfo
 }
 
 export const getColor = (quality: number) => {

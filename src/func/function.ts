@@ -1,5 +1,5 @@
 import { notification } from "antd"
-import axios, { AxiosError } from "axios"
+import axios from "axios"
 import html2canvas from "html2canvas"
 
 export const getCharInfo = async (name: string, id: number) => {

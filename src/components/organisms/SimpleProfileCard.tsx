@@ -9,6 +9,7 @@ import JewelProfile from '../molecules/JewelProfile';
 import MainProfile from '../molecules/MainProfile';
 import ProfileUtils from '../molecules/ProfileUtils';
 import SimpleEquipProfile from '../molecules/SimpleEquipProfile';
+import SkillProfile from '../molecules/SkillProfile';
 import StatProfile from '../molecules/StatProfile';
 import UserIdentity from '../molecules/UserIdentity';
 
@@ -55,6 +56,9 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
           </Col>
           <Col span={24}>
             <JewelProfile jewels={info.jewelInfo} isSimple={true}/>
+          </Col>          
+          <Col span={24}>
+            <SkillProfile skills={info.skillInfo} isSimple={true}/>
           </Col>
           <Col span={6}>
             <BigText>카드</BigText>

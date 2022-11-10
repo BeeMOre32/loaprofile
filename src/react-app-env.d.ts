@@ -13,6 +13,7 @@ interface CharInfo {
     equipInfo: MainEquipInfo;
     subEquipInfo: SubEquipInfo;
     simpleEquipInfo: SimpleEquipInfo;
+    skillInfo: SkillInfo;
 
     isSafe: boolean;
     reason: string;
@@ -90,4 +91,22 @@ interface SimpleEquipInfo {
     brace: BraceInfo;
     accSrc: string;
     defenseSrc: string;
+}
+
+// 개별 트포 정보
+interface TripodInfo {
+    originSkill: string;
+    name: string;
+    level: number;
+    isMax: boolean;
+    src: string;
+}
+
+interface SkillInfo {
+    skillPt: number;
+    maxSkillPt: number;
+    lv5Tripod: number;
+    lv4Tripod: number;
+    maxTripod: number;
+    tripodList: TripodInfo[]
 }

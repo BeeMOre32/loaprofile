@@ -49,9 +49,7 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
             alignItems: "left"
           }}>
             <IconImg src={`images/jobs/${info.mainInfo.job}.png`} style={{
-              filter: isDark ? "invert(100%)" : undefined,
-              msFilter: isDark ? "invert(100%)" : undefined,
-              WebkitFilter: isDark ? "invert(100%)" : undefined
+              backgroundColor: "lightgray"
             }}/>
             <BigText style={{marginLeft: "10px", lineHeight: "40px"}} 
               editable={info.isSafe ? {

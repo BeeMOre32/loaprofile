@@ -21,6 +21,7 @@ function DataLoader() {
     fileList.forEach((file) => {
       file.text().then((data) => {
         const json = JSON.parse(data) as CharInfo;
+        json.id = Math.floor(Math.random() * 1000000) + 1000000
         setProfiles([...profiles, json])
       })
     })

@@ -1,9 +1,8 @@
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import { Card, Col, Divider, Row } from 'antd';
-import React from 'react'
-import { BigText, MediumText } from '../atoms/styles';
-import EquipProfile from '../molecules/EquipProfile';
+import React, { useState } from 'react'
+import { BigText, IconImg, MediumText } from '../atoms/styles';
 import ImprintProfile from '../molecules/ImprintProfile';
 import JewelProfile from '../molecules/JewelProfile';
 import MainProfile from '../molecules/MainProfile';
@@ -31,18 +30,37 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
       transition,
       zIndex : isDragging ? "100" : "auto"
     };
+  
+    const [editableStr, setEditableStr] = useState(
+      info.mainInfo.displayName ? info.mainInfo.displayName : info.mainInfo.nickname
+    );
 
   return (
     <div ref={setNodeRef} style={style} id={`profile-loa-${info.id}`}>
       <Card.Grid hoverable={false} style={{width: "100%", minWidth: '400px', height: '100%', 
-       backgroundColor: info.isSafe ? 'white' : "lightyellow",
        border: '1px solid lightgray', boxShadow: 'unset'}}>
         <Row gutter={[10,24]} align="middle">
+          <Col span={24} style={{
+            position: "relative",
+            display: "flex",
+            alignItems: "left"
+          }}>
+            <IconImg src={`images/jobs/${info.mainInfo.job}.png`}/>
+            <BigText style={{marginLeft: "10px", lineHeight: "40px"}} 
+              editable={info.isSafe ? {
+                onChange: setEditableStr,
+                tooltip: "표시할 이름 수정",
+                enterIcon: null
+              } : false}
+            >
+                {editableStr}
+            </BigText>
+            <UserIdentity isSafe={info.isSafe} reason={info.reason}/>
+          </Col>
           <Col span={24} {...attributes} {...listeners} style={{
-            border: "1px solid lightgray"
+            border: "2px solid lightgray",
           }}>
             <MainProfile {...info.mainInfo}/>
-            <UserIdentity isSafe={info.isSafe} reason={info.reason}/>
           </Col>
           <Col span={14}>
             <SimpleEquipProfile {...info.simpleEquipInfo}/>
@@ -65,7 +83,10 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
           </Col>
           <Col span={18}>
             {info.card.map((val, idx) => (
-              <MediumText key={idx}>{val}</MediumText>
+              <>
+                {idx !== 0 ? <br/> : null}
+                <MediumText key={idx}>{val}</MediumText>
+              </>
             ))}
           </Col>
           <Col span={24}>

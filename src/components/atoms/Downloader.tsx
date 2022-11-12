@@ -1,6 +1,7 @@
 import { Button } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import { saveImage } from '../../func/function';
+import { LoaContext } from '../contexts';
 
 interface DownloaderProps {
     tag: string;
@@ -16,13 +17,15 @@ interface DownloaderProps {
  */
 const Downloader: React.FC<DownloaderProps> = ({ tag }) => {
 
+    const { isDark } = useContext(LoaContext)
+
     return (
         <Button 
             shape='round' 
             style={{ height: 35, fontSize: "1rem", margin: 5}} 
             type="primary" 
             danger 
-            onClick={() => saveImage(tag)}
+            onClick={() => saveImage(tag, isDark)}
         >
             전체 Download
         </Button>

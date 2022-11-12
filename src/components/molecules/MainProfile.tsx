@@ -1,5 +1,5 @@
 import React from 'react'
-import { BigText, IconImg, MediumText } from '../atoms/styles'
+import { MediumText } from '../atoms/styles'
 
 const MainProfile: React.FC<MainInfo> = (main) => {
 
@@ -9,18 +9,7 @@ const MainProfile: React.FC<MainInfo> = (main) => {
       gridTemplateColumns: "1fr",
       paddingBottom: "3px"
     }}>
-      <div style={{
-          display: "flex",
-          alignContent: "center",
-          width: "100%",
-          padding: "5px"
-      }}>
-        <IconImg src={`images/jobs/${main.job}.png`}/>
-        <BigText style={{marginLeft: "10px", lineHeight: "40px"}}>
-            {main.displayName ? main.displayName : main.nickname}
-        </BigText>
-      </div>
-      <MediumText style={{lineHeight: "20px", color: "blue"}}>
+      <MediumText style={{lineHeight: "20px"}} type="success">
           {main.server} / {main.job}
       </MediumText>
       <div style={{

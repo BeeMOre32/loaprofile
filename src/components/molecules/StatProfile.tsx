@@ -1,5 +1,3 @@
-import { jobBooks } from "../../func/constant"
-
 interface StatProps {
     stats: BaseKeyVal[]
 }

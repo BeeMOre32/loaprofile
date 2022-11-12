@@ -23,19 +23,21 @@ export const getCharInfo = async (name: string, id: number) => {
     return {} as CharInfo
 }
 
-export const getColor = (quality: number) => {
+export const getColor = (quality: number, isDark=false) => {
+    if (isDark) return undefined
     if (quality === 100) return "#FF5E00"
     else if (quality >= 90) return "#FF00DD"
     else if (quality >= 70) return "#0054FF"
-    else return "black" 
+    else return undefined 
 }
 
-export const saveImage = (tag: string, displayName = Date.now().toString()) => {
+export const saveImage = (tag: string, isDark=false, displayName = Date.now().toString()) => {
     const element = document.getElementById(tag)
     if (!element) return;
     html2canvas(element, {
         allowTaint: true,
         useCORS: true,
+        backgroundColor: isDark ? "#303030" : "white",
         ignoreElements: (element) => element.className === "profile-buttons"
     }).then((canvas) => {
         const dataUrl = canvas.toDataURL()

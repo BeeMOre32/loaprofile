@@ -1,4 +1,8 @@
+import { Typography } from "antd";
 import styled from "styled-components";
+
+
+const { Text } = Typography;
 
 export const ColumnFlexDiv = styled.div`
     display: flex;
@@ -13,16 +17,18 @@ export const RowFlexDiv = styled.div`
     margin: 10px auto;
 `
 
-export const BigText = styled.b`
+export const BigText = styled(Text)`
     font-size: 20px;
+    font-weight: 600;
 `
-export const MediumText = styled.p`
+export const MediumText = styled(Text)`
     font-size: 15px;
     font-weight: 600;
     margin: 2px;
 `
-export const SmallText = styled.b`
+export const SmallText = styled(Text)`
     font-size: 12px;
+    font-weight: 600;
 `
 
 // 이미지 아이콘

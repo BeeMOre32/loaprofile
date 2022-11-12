@@ -1,12 +1,15 @@
-import { InfoCircleOutlined, InfoCircleTwoTone } from '@ant-design/icons'
+import { InfoCircleTwoTone } from '@ant-design/icons'
 import { Tooltip } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import { getColor } from '../../func/function'
 import { ColumnFlexDiv, IconImg, ItemFlexDiv, SmallText } from '../atoms/styles'
+import { LoaContext } from '../contexts'
 
 const SimpleEquipProfile: React.FC<SimpleEquipInfo> = (info) => {
 
     const upgradeCnt = info.weapon.name.replace(/[^\d]/g, '')
+    const { isSecret, isDark } = useContext(LoaContext)
+
 
     return ( !info ? null : 
         <ColumnFlexDiv>
@@ -16,10 +19,12 @@ const SimpleEquipProfile: React.FC<SimpleEquipInfo> = (info) => {
                     <SmallText style={{fontSize: "14px"}}>
                         {upgradeCnt.length > 0 ? upgradeCnt : 0}강&nbsp;&nbsp;&nbsp;Lv.{info.weapon.level}
                     </SmallText>
-                    <br/>
-                    <SmallText>
-                        무기 품질 <b style={{color: getColor(info.weapon.quality)}}>{info.weapon.quality}</b>
-                    </SmallText>
+                    {isSecret ? null : <>
+                        <br/>
+                        <SmallText>
+                            무기 품질 <b style={{color: getColor(info.weapon.quality, isDark)}}>{info.weapon.quality}</b>
+                        </SmallText>                    
+                    </>}
                 </div>
             </ItemFlexDiv>
             <ItemFlexDiv style={{marginTop: "15px", marginBottom: "15px"}}>
@@ -36,17 +41,19 @@ const SimpleEquipProfile: React.FC<SimpleEquipInfo> = (info) => {
                     <SmallText style={{fontSize: "14px"}}>
                         {info.setName}
                     </SmallText>
-                    <br/>
-                    <SmallText>
-                        방어구 평균 품질 <b style={{color: getColor(info.defAvgQuality)}}>{info.defAvgQuality}</b>
-                    </SmallText>
+                    {isSecret ? null : <>
+                        <br/>
+                        <SmallText>
+                            방어구 평균 품질 <b style={{color: getColor(info.defAvgQuality, isDark)}}>{info.defAvgQuality}</b>
+                        </SmallText>
+                    </>}
                 </div>
             </ItemFlexDiv>
             <ItemFlexDiv>
                 <IconImg src={info.accSrc.length > 0 ? info.accSrc : "images/empty.png"} crossOrigin="anonymous" style={{marginRight: "5px", border: `2px solid gray`}}/>
                 <div>
                     <SmallText style={{fontSize: "14px"}}>
-                        악세 품질 <b style={{color: getColor(info.accAvgQuality)}}>{info.accAvgQuality}</b>&nbsp;&nbsp;
+                        악세 품질 <b style={{color: getColor(info.accAvgQuality, isDark)}}>{info.accAvgQuality}</b>&nbsp;&nbsp;
                         <Tooltip title={
                             <>
                                 악세서리별로 가중치를 반영한 품질입니다. <br/>
@@ -62,9 +69,9 @@ const SimpleEquipProfile: React.FC<SimpleEquipInfo> = (info) => {
             {info.brace.name ? 
             <ItemFlexDiv>
                 <IconImg src={info.brace.src} crossOrigin="anonymous" style={{border: `2px solid ${info.brace.color}`}}/>
-                <div style={{fontSize: "13px", wordBreak: "keep-all", display: "flex", alignItems: 'center'}}>
-                    <b>{info.brace.options.length > 0 ? info.brace.options.join(" ") : "특수옵션X"}</b>
-                </div>
+                {isSecret ? <SmallText>??</SmallText> : <div style={{fontSize: "13px", wordBreak: "keep-all", display: "flex", alignItems: 'center'}}>
+                    <SmallText>{info.brace.options.length > 0 ? info.brace.options.join(" ") : "특수옵션X"}</SmallText>
+                </div>}
             </ItemFlexDiv> : null}
         </ColumnFlexDiv>
       )

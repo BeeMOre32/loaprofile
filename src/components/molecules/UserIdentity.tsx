@@ -6,8 +6,8 @@ import React from 'react'
 const UserIdentity: React.FC<{reason : string, isSafe: boolean}> 
     = ({reason, isSafe}: {reason : string, isSafe: boolean}) => {
   return (
-    <Tooltip title={reason}>
-        <a style={{
+    <Tooltip title={reason} placement="left">
+        <div style={{
             position: "absolute",
             top: 3,
             right: 3
@@ -19,7 +19,7 @@ const UserIdentity: React.FC<{reason : string, isSafe: boolean}>
             : <CloseCircleTwoTone style={{
                 fontSize:"30px"
             }} twoToneColor="#FF5733"/>}
-        </a>
+        </div>
     </Tooltip>
   )
 }

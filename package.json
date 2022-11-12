@@ -23,6 +23,7 @@
     "dom-to-image": "^2.6.0",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
+    "react-css-theme-switcher": "^0.3.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-linkify": "^1.0.0-alpha",
@@ -59,7 +60,14 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "autoprefixer": "^10.4.13",
+    "gh-pages": "^4.0.0",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^9.0.1",
+    "less-plugin-npm-import": "^2.1.0"
   },
   "homepage": "https://beta.loaprofile.com"
 }

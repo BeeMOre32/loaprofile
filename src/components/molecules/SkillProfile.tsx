@@ -52,7 +52,7 @@ const SkillProfile: React.FC<SkillProps> = ({skills, isSimple}: SkillProps) => {
                                 border: "1px solid lightgray",
                                 boxSizing: "border-box"
                             }}>
-                                <div style={{width: '100px'}}>
+                                <div style={{width: '100px', margin: "4px"}}>
                                     <IconImg src={filtered[0].src}/>
                                     <br/>
                                     <SmallText>{filtered[0].originSkill}</SmallText>
@@ -69,7 +69,7 @@ const SkillProfile: React.FC<SkillProps> = ({skills, isSimple}: SkillProps) => {
                                                     backgroundColor: getColor(tripod)
                                                 }
                                             }>{tripod.isMax ? "M" : tripod.level}</Avatar>
-                                            {tripod.name}
+                                            <SmallText>{tripod.name}</SmallText>
                                         </div>
                                     ))}
                                 </div>

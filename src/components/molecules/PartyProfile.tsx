@@ -1,6 +1,6 @@
 import { Card, Tooltip } from 'antd'
 import React from 'react'
-import { BigText, MediumText, SmallText } from '../atoms/styles'
+import { BigText, MediumText } from '../atoms/styles'
 
 const PartyProfile: React.FC<CharInfo> = (info) => {
 
@@ -25,7 +25,7 @@ const PartyProfile: React.FC<CharInfo> = (info) => {
                         {info.collectInfo.map((a, idx) => (
                             <Tooltip key={idx} title={a.name}>
                                 <th>
-                                    <img src={`images/collections/${a.name}.png`} />
+                                    <img alt={a.name} src={`images/collections/${a.name}.png`} />
                                 </th>
                             </Tooltip>
                         ))}

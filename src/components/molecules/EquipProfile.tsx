@@ -1,7 +1,11 @@
 import { getColor } from "../../func/function"
+import { useContext } from "react"
 import { ColumnFlexDiv, IconImg, ItemFlexDiv, SmallText } from "../atoms/styles"
+import { LoaContext } from "../contexts"
 
 const EquipProfile: React.FC<MainEquipInfo> = (info) => {
+
+    const { isSecret, isDark } = useContext(LoaContext)
 
     return (
       <ColumnFlexDiv>
@@ -13,9 +17,13 @@ const EquipProfile: React.FC<MainEquipInfo> = (info) => {
                         {a.name}
                     </SmallText>
                     <br/>
-                    <SmallText>
-                        {a.set} {a.setLv ? `Lv.${a.setLv}` : ""} 품질 <b style={{color: getColor(a.quality)}}>{a.quality}</b>
+                    { isSecret 
+                    ? <SmallText>
+                        {a.set} {a.setLv ? `Lv.${a.setLv}` : ""}
                     </SmallText>
+                    : <SmallText>
+                        {a.set} {a.setLv ? `Lv.${a.setLv}` : ""} 품질 <b style={{color: getColor(a.quality, isDark)}}>{a.quality}</b>
+                    </SmallText>}
                 </div>
             </ItemFlexDiv>
         ))}

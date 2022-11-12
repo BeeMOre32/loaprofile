@@ -22,7 +22,7 @@ function ProfilePage() {
   }, [])
 
   return (
-    <div style={{width: "100%"}}>
+    <div style={{width: "100%", marginTop: "70px"}}>
       {loading ? <Spin tip="Loading..." style={{marginTop: "30px"}}/> : <Profile/>}
     </div>
   )

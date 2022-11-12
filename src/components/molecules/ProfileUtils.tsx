@@ -1,47 +1,19 @@
-import { DeleteOutlined, EditOutlined, VerticalAlignBottomOutlined } from "@ant-design/icons"
-import { Button, Input, Modal, notification, Popconfirm, Popover, Tooltip } from "antd"
+import { DeleteOutlined, VerticalAlignBottomOutlined } from "@ant-design/icons"
+import { Button, notification, Popconfirm, Popover } from "antd"
 import React from "react"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { saveImage } from "../../func/function"
-import Downloader from "../atoms/Downloader"
 import { LoaContext } from "../contexts"
 
 const ProfileUtils: React.FC<{id : number, isSafe: boolean}> = ({id, isSafe}: {id : number, isSafe: boolean}) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const { profiles, removeProfile, addProfile, setProfiles } = useContext(LoaContext)
-
-    const [disname, setDisname] = useState("");
-
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleOk = () => {
-        const profile = profiles.find(a => a.id === id);
-        if(profile) {
-            profile.mainInfo.displayName = disname;
-            setProfiles([profile, ...profiles.filter(a => a.id !== id)])
-            setIsModalOpen(false);
-            notification.info({
-                message: '이름이 변경되었습니다.'
-            });
-        } else {
-            notification.error({
-                message: '프로필 정보 검색에 실패했습니다.'
-            });
-        }
-    };
+    const { profiles, removeProfile, isDark } = useContext(LoaContext)
 
     const deleteList = () => {
         removeProfile(id)
         notification.info({
             message: '삭제되었습니다.'
         });
-    };
-
-    const handleCancel = () => {
-        setIsModalOpen(false);
     };
 
     const downloadJson = () => {
@@ -66,7 +38,7 @@ const ProfileUtils: React.FC<{id : number, isSafe: boolean}> = ({id, isSafe}: {i
 
     const downloadContent = (
         <>
-            <Button type="primary" style={{margin: "2px"}} onClick={() => saveImage(`profile-loa-${id}`)}>
+            <Button type="primary" style={{margin: "2px"}} onClick={() => saveImage(`profile-loa-${id}`, isDark)}>
                 이미지
             </Button>
             <Button type="primary" style={{margin: "2px"}} onClick={downloadJson}>
@@ -88,12 +60,6 @@ const ProfileUtils: React.FC<{id : number, isSafe: boolean}> = ({id, isSafe}: {i
                 <VerticalAlignBottomOutlined />
             </Button>
         </Popover>
-        { isSafe ? 
-        <Tooltip title="이름 수정">
-            <Button shape="round" onClick={showModal} style={{margin: "2px"}}>
-                <EditOutlined />
-            </Button>
-        </Tooltip> : null}
         <Popconfirm
             title="정말 삭제할까요?"
             onConfirm={deleteList}
@@ -104,15 +70,6 @@ const ProfileUtils: React.FC<{id : number, isSafe: boolean}> = ({id, isSafe}: {i
                 <DeleteOutlined />
             </Button>
         </Popconfirm>
-        <Modal title="이름 수정" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <p>닉네임 칸에 표시되는 이름을 바꿀 수 있어요.</p>
-            <Input 
-                placeholder="새 이름을 입력하세요."
-                value={disname}
-                style={{maxWidth: 300, margin: "20px auto"}}
-                onChange={(e) => setDisname(e.target.value)}
-            />
-        </Modal>
       </div>
     )
   }

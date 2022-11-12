@@ -9,22 +9,20 @@ import React, { useContext, useState } from 'react'
 import ProfileCard from './ProfileCard';
 import { LoaContext } from '../contexts';
 import PartyProfile from '../molecules/PartyProfile';
-import { Checkbox, Empty, Input } from 'antd';
+import { Empty, Input } from 'antd';
 import Downloader from '../atoms/Downloader';
 import DataLoader from '../atoms/DataLoader';
 import { ColumnFlexDiv, MediumText, RowFlexDiv } from '../atoms/styles';
 import { getCharInfo } from '../../func/function';
 import useWindowDimensions from '../../func/useWindowDimensions';
-import { isMobile } from 'react-device-detect';
 import SimpleProfileCard from './SimpleProfileCard';
 
 const { Search } = Input;
 
 const Profile: React.FC = () => {
 
-    const { setProfiles, addProfile, profiles } = useContext(LoaContext)
+    const { setProfiles, addProfile, profiles, isSimple } = useContext(LoaContext)
     const [nickname, setNickname] = useState("")
-    const [isSimple, setIsSimple] = useState(isMobile)
     const { width } = useWindowDimensions()
 
     const sensors = useSensors(
@@ -80,13 +78,6 @@ const Profile: React.FC = () => {
                         onChange={(e) => setNickname(e.target.value)}
                         onSearch={searchNickName}
                     />
-                    <Checkbox 
-                        defaultChecked={isSimple} 
-                        onChange={() => setIsSimple(!isSimple)}
-                        style={{margin: "5px", marginLeft: "20px"}}
-                    >
-                        간단 프로필
-                    </Checkbox>
                 </RowFlexDiv>
                 <RowFlexDiv style={{minHeight: '200px'}}>
                     { profiles.length > 0 ?

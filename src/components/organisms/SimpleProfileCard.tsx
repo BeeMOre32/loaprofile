@@ -1,8 +1,9 @@
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import { Card, Col, Divider, Row } from 'antd';
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { BigText, IconImg, MediumText } from '../atoms/styles';
+import { LoaContext } from '../contexts';
 import ImprintProfile from '../molecules/ImprintProfile';
 import JewelProfile from '../molecules/JewelProfile';
 import MainProfile from '../molecules/MainProfile';
@@ -35,6 +36,8 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
       info.mainInfo.displayName ? info.mainInfo.displayName : info.mainInfo.nickname
     );
 
+    const { isDark } = useContext(LoaContext)
+
   return (
     <div ref={setNodeRef} style={style} id={`profile-loa-${info.id}`}>
       <Card.Grid hoverable={false} style={{width: "100%", minWidth: '400px', height: '100%', 
@@ -45,7 +48,11 @@ const SimpleProfileCard : React.FC<CharInfo> = (info) => {
             display: "flex",
             alignItems: "left"
           }}>
-            <IconImg src={`images/jobs/${info.mainInfo.job}.png`}/>
+            <IconImg src={`images/jobs/${info.mainInfo.job}.png`} style={{
+              filter: isDark ? "invert(100%)" : undefined,
+              msFilter: isDark ? "invert(100%)" : undefined,
+              WebkitFilter: isDark ? "invert(100%)" : undefined
+            }}/>
             <BigText style={{marginLeft: "10px", lineHeight: "40px"}} 
               editable={info.isSafe ? {
                 onChange: setEditableStr,

@@ -50,7 +50,9 @@ const ProfileCard : React.FC<CharInfo> = (info) => {
             alignItems: "left"
           }}>
             <IconImg src={`images/jobs/${info.mainInfo.job}.png`} style={{
-              filter: isDark ? "invert(100%)" : undefined
+              filter: isDark ? "invert(100%)" : undefined,
+              msFilter: isDark ? "invert(100%)" : undefined,
+              WebkitFilter: isDark ? "invert(100%)" : undefined
             }}/>
             <BigText style={{marginLeft: "10px", lineHeight: "40px"}} 
               editable={info.isSafe ? {
